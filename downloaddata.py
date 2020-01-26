@@ -2,10 +2,8 @@ from pymongo import MongoClient
 from datetime import datetime
 import json
 import enlighten
-client = MongoClient("localhost", 8686, maxPoolSize=50)
-db = client.cge_info_system
 
-collections = ['expedientes', 'jobs', 'migrations', 'users']
+
 
 def dump_collection(db, collection):
     f = open(f'{db.name}({collection})-{datetime.now()}.json', 'w')
@@ -21,5 +19,7 @@ def dump_collection(db, collection):
 
     pbar.close()
 
-for c in collections:
-    dump_collection(db, c)
+
+def dump_collections(db, collections):
+    for c in collections:
+        dump_collection(db, c)
