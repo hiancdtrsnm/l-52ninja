@@ -14,7 +14,7 @@ def dump_collection(db, collection):
     pbar = enlighten.Counter(total=collection.find({}).count(), desc='Basic', unit='documents')
     cursor = collection.find({})
     for document in cursor:
-        f.write(json.dumps(document, default=str, ensure_ascii=False))
+        f.write(f'{json.dumps(document, default=str, ensure_ascii=False)}\n')
         pbar.update()
 
     pbar.close()
